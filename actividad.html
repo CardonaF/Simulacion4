@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/estilo.css">
+    <title>Actividad</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Pregunta #1</h1>
+        <h3>Selecciona la respuesta correcta y arrastrala hasta la ubicacion de indicada, al finalizar se mostrara el resultado</h3>
+
+        <div class="container3">
+            <div class="imgn"><img src="../imagenes/sin_x_notitle.png" width="40%" align="left" alt="grafica de funcion" hspace="40"></div>
+            <div class="casilla" id="casilla" ondrop="soltar(event)" ondragover="permitirSoltar(event)">Soltar Aqui</div>
+            <div class="container2" id="lista">
+                <div class="opciones" id="opcion1" draggable="true" ondragstart="arrastrar(event)" data-correcto="erronea">f(x)=cos(x)</div>
+                <div class="opciones" id="opcion2" draggable="true" ondragstart="arrastrar(event)" data-correcto="erronea">f(x)=tan(x)</div>
+                <div class="opciones" id="opcion3" draggable="true" ondragstart="arrastrar(event)" data-correcto="correcta">f(x)=sin(x)</div>
+                <div class="opciones" id="opcion4" draggable="true" ondragstart="arrastrar(event)" data-correcto="erronea">f(x)=csc(x)</div>
+            </div>
+            <div class="mensajes" id="mensaje"></div>
+        </div>
+
+
+        <button class="reiniciar" onclick="reiniciar()">Reiniciar Respuesta</button>
+        <button class="continuar" onclick="continuar()">Continuar</button>
+    </div>
+
+    <script>
+        let opcionAr;
+        let casilla= document.getElementById("casilla");
+        let mensaje= document.getElementById("mensaje");
+
+        function arrastrar(accion){
+            opcionAr=accion.target;
+        }
+        function permitirSoltar(accion){
+            accion.preventDefault();
+        }
+        function soltar(event){
+            event.preventDefault();
+            if(casilla.children.length > 0){
+                casilla.removeChild(casilla.firstChild);
+            }
+            casilla.appendChild(opcionAr);
+            const siHay= casilla.querySelector(".opciones").dataset.correcto==="correcta";
+            if(siHay){
+                let cont= parseInt(localStorage.getItem("contador")) || 0;
+                cont++;
+                localStorage.setItem("contador",cont);
+            }
+        }
+        function reiniciar(){
+            const opcion= casilla.querySelector(".opciones");
+            if(!opcion){
+                mensaje.textContent= "No hay respuesta asignada";
+                mensaje.style.backgroundColor= "rgb(208, 131, 43)";
+                return;
+            }else{
+                window.location.reload();
+            }
+            // const siHay= casilla.querySelector(".opciones").dataset.correcto=== "correcta";
+            // if(siHay){
+            //     cont= cont + 1;
+            //     localStorage.setItem("contador", cont);
+            //     mensaje.textContent= "Respuesta Correcta";
+            //     mensaje.style.backgroundColor= "yellow";
+            // }
+        }
+        
+        function continuar(){
+            if(casilla.querySelector(".opciones")){    
+                window.location.href= 'actividad2.html';
+            }else{
+                alert("Por favor seleccione una respuesta para poder continuar");
+            }
+        }
+    </script>
+</body>
+</html>
