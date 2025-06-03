@@ -50,6 +50,7 @@ h3{
     margin-top: 20px;
     margin-left: 15%;
     margin-right: 15%;
+    cursor: pointer;
 }
 .casilla{
     background-color: rgb(143, 41, 233, 0.7);
