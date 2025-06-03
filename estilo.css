@@ -67,6 +67,7 @@ h3{
     margin: 30px;
     padding-left: 60px;
     padding-right: 60px;
+    cursor: pointer;
 }
 .reiniciar{
     background-color: rgb(220, 144, 52);
@@ -75,6 +76,7 @@ h3{
     margin: 30px;
     padding-left: 60px;
     padding-right: 60px;
+    cursor: pointer;
 }
 .mensajes{
     border-radius: 30px;
