@@ -59,6 +59,12 @@
                 mensaje.style.backgroundColor= "rgb(208, 131, 43)";
                 return;
             }else{
+                const siHay= casilla.querySelector(".opciones").dataset.correcto==="correcta";
+                if(siHay){
+                    let cont= parseInt(localStorage.getItem("contador")) || 0;
+                    cont= Math.max(cont-1, 0);
+                    localStorage.setItem("contador",cont);
+                }
                 window.location.reload();
             }
             // const siHay= casilla.querySelector(".opciones").dataset.correcto=== "correcta";
